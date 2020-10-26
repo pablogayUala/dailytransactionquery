@@ -5,18 +5,17 @@ import io.quarkus.vertx.web.Param;
 import io.quarkus.vertx.web.Route;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.info.Info;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
+@Slf4j
 @OpenAPIDefinition(info = @Info(title = "Transaction example API",
                 version = "1.0.0"))
 public class TransactionRouter {
-    private static final Logger log = LoggerFactory.getLogger(TransactionRouter.class);
     private final String BASE_PATH = "/transaction";
     private final String JSON_MEDIA_TYPE = "application/json";
 
