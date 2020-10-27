@@ -1,0 +1,132 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Transaction example API",
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/transaction/{accountId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "FechaDesde",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "FechaHasta",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetTransactionsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Transaction" : {
+        "type" : "object",
+        "properties" : {
+          "Importe" : {
+            "$ref" : "#/components/schemas/Amount"
+          },
+          "Fecha" : {
+            "type" : "string"
+          },
+          "Descripcion" : {
+            "type" : "string"
+          },
+          "Id" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "MCC" : {
+            "type" : "string"
+          },
+          "DescripcionActividad" : {
+            "type" : "string"
+          },
+          "Observaciones" : {
+            "type" : "string"
+          },
+          "DescripcionPlan" : {
+            "type" : "string"
+          },
+          "TCC" : {
+            "type" : "string"
+          },
+          "Tipo" : {
+            "format" : "double",
+            "type" : "number"
+          }
+        }
+      },
+      "ListTransaction" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Transaction"
+        }
+      },
+      "Amount" : {
+        "type" : "object",
+        "properties" : {
+          "Monto" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "Moneda" : {
+            "type" : "string"
+          }
+        }
+      },
+      "GetTransactionsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "FechaDesde" : {
+            "type" : "string"
+          },
+          "Cantidad" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "Desde" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "FechaHasta" : {
+            "type" : "string"
+          },
+          "Total" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "Resultado" : {
+            "$ref" : "#/components/schemas/ListTransaction"
+          }
+        }
+      }
+    }
+  }
+}
